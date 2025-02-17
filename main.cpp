@@ -227,24 +227,42 @@ int main() {
                 break;
             case 4:
                 int recipientChoice;
-                cout << "Select the recipient for money transfer:" << endl; // fix = don't ask for current acc, names already given.
+                cout << "Select the recipient for money transfer:" << endl;
                 cout << "1. Agent Smith" << endl;
                 cout << "2. Agent Brown" << endl;
                 cout << "3. Agent Jones" << endl;
                 cout << "Enter your choice: ";
                 cin >> recipientChoice;
 
-                if (recipientChoice == 1) {
-                    currentAccount->moneyTransfer(account1);
-                }
-                else if (recipientChoice == 2) {
-                    currentAccount->moneyTransfer(account2);
-                }
-                else if (recipientChoice == 3) {
-                    currentAccount->moneyTransfer(account3);
-                }
-                else {
-                    cout << "Invalid recipient choice." << endl;
+                if (validInput(recipientChoice)) {
+                    switch (recipientChoice) {
+                    case 1:
+                        if (currentAccount != &account1) {
+                            currentAccount->moneyTransfer(account1);
+                        }
+                        else {
+                            cout << "You cannot transfer money to your own account." << endl;
+                        }
+                        break;
+                    case 2:
+                        if (currentAccount != &account2) {
+                            currentAccount->moneyTransfer(account2);
+                        }
+                        else {
+                            cout << "You cannot transfer money to your own account." << endl;
+                        }
+                        break;
+                    case 3:
+                        if (currentAccount != &account3) {
+                            currentAccount->moneyTransfer(account3);
+                        }
+                        else {
+                            cout << "You cannot transfer money to your own account." << endl;
+                        }
+                        break;
+                    default:
+                        cout << "Invalid recipient choice." << endl;
+                    }
                 }
                 break;
             case 5:
